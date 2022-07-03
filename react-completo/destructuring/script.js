@@ -1,21 +1,13 @@
-// const upperName = (name) => name.toUpperCase();
-// console.log(upperName("Lucas"))
-
-class Menu {
-  constructor(menu) {
-    this.menuElement = document.querySelector(menu);
-    this.activeClass = "active"
-  }
-
-  addActiveEvent() {
-    this.menuElement.addEventListener("click", (event) =>{
-      event.target.classList.toggle(this.activeClass)
-    })
-  }
+function handleMouseMove({clientX, clientY}) {
+  console.log(clientX, clientY)
 }
 
+document.documentElement.addEventListener("mousemove", handleMouseMove);
 
-const menu = new Menu(".principal");
-menu.addActiveEvent();
+const frutas = ["banana", "maçã", "uva"];
 
-console.log(menu)
+const frutaToUpperCase = frutas.map((fruta) => {
+  return fruta.toUpperCase();
+});
+
+console.log(frutaToUpperCase);
