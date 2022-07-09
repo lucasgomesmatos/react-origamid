@@ -1,27 +1,24 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Produtos from "./Produtos/Produtos";
-
-
-
-
+import Header from "./Header/Header";
+import Produtos from "./Produtos/Produtos"
+import Home from "./Home/Home"
 
 const App = () => {
+  const { pathname } = window.location;
+
+  let Component;
+  if (pathname === "/produtos") {
+    Component = Produtos;
+  } else {
+    Component = Home;
+  }
 
   return (
-    <>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li>
-            <a href="/produtos">Produtos</a>
-          </li>
-        </ul>
-      </nav>
-      
-      <Produtos/>
-    </>
-  )
+    <section>
+      <Header />
+      <Component />
+    </section>
+  );
 };
 
 export default App;

@@ -1,27 +1,14 @@
-import React from "react";
+import React from 'react';
 
-const Produto = () => {
-  // Replique a interface como a apresentada na aula
-  // Utilize a array abaixo para mostrar os produtos
-  // Quebre em componentes o que precisar ser reutilizado
-  // Dica: const { pathname } = window.location; (puxa o caminho do URL)
-  const produtos = [
-    { nome: "Notebook", propriedades: ["16gb ram", "512gb"] },
-    { nome: "Smartphone", propriedades: ["2gb ram", "128gb"] },
-  ];
-
+const Produto = ({ nome, propriedades }) => {
   return (
-    <div>
-      {produtos.map(({ nome, propriedades }) => (
-        <div key={nome} style={{ margin: "1rem 0", border: "1px solid #000" }}>
-          <ul>
-            <p>{nome}</p>
-            {propriedades.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div style={{ border: '1px solid', margin: '1rem 0', padding: '1rem' }}>
+      <p>{nome}</p>
+      <ul>
+        {propriedades.map((propriedade) => (
+          <li key={propriedade}>{propriedade}</li>
+        ))}
+      </ul>
     </div>
   );
 };
