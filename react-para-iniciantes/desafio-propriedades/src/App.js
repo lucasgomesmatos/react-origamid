@@ -1,23 +1,24 @@
-import React from "react";
+import React, { Component } from "react";
 import Header from "./Header/Header";
-import Produtos from "./Produtos/Produtos"
-import Home from "./Home/Home"
+import Produtos from "./Produtos/Produtos";
+import Home from "./Home/Home";
 
 const App = () => {
+  // Dica: const { pathname } = window.location; (puxa o caminho do URL)
+
   const { pathname } = window.location;
 
-  let Component;
-  if (pathname === "/produtos") {
+  if(pathname === "/produtos") {
     Component = Produtos;
   } else {
     Component = Home;
   }
 
   return (
-    <section>
+    <div>
       <Header />
-      <Component />
-    </section>
+      <Component/>
+    </div>
   );
 };
 

@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-const Produto = ({ nome, propriedades }) => {
+const Produto = ({nome, propriedades}) => {
   return (
-    <div style={{ border: '1px solid', margin: '1rem 0', padding: '1rem' }}>
+    <section style={{ border: "1px solid #000", marginTop: "10px", padding: "10px"}}>
       <p>{nome}</p>
-      <ul>
-        {propriedades.map((propriedade) => (
-          <li key={propriedade}>{propriedade}</li>
+      <ul key={nome}>
+        {propriedades.map((propriedades) => (
+          <li key={propriedades}>{propriedades}</li>
         ))}
       </ul>
-    </div>
-  );
-};
+    </section>
+  )
+}
 
-export default Produto;
+export default Produto
