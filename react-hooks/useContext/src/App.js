@@ -1,6 +1,7 @@
 import React from "react";
 import { GlobalContext } from "./GlobalContext";
-import Produto from "./Produto";
+import { Produto } from "./Produto";
+
 
 
 const App = () => {

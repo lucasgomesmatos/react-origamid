@@ -1,47 +1,17 @@
-import React, { useContext, useState } from "react";
-import { GlobalStore } from "./GlobalContext";
+import React, { useContext } from "react";
+import { GlobalStorage } from "./GlobalContext";
 
-const Produto = () => {
-  const dados = useContext(GlobalStore);
+export const Produto = () => {
+  const dados = useContext(GlobalStorage);
+  if (dados.mega === null) return null;
 
-  const [mostrar, setMostrar] = useState(false);
-
-  if (dados.produto === null) return null;
-  return (
+  return <div>
+    {
+    dados.mega && 
     <div>
-      <button
-        onClick={() => {
-          setMostrar(true);
-        }}
-      >
-        Clique
-      </button>
-      {mostrar && (
-        <button
-          style={{ marginLeft: "1rem" }}
-          onClick={() => {
-            setMostrar(false)
-          }}
-        >
-          Limpar
-        </button>
-      )}
-      <p>{!mostrar && "Sem produtos no momento."}</p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-        {mostrar &&
-          dados.produto.map((item) => (
-            <div key={item.id}>
-              <p>{item.nome}</p>
-              <img
-                style={{ width: "150px" }}
-                src={item.fotos[0].src}
-                alt={item.nome}
-              />
-            </div>
-          ))}
-      </div>
+      <p>{dados.mega.localidade}</p>
+      <p>{dados.mega.cep }</p>
     </div>
-  );
+    
+    }</div>;
 };
-
-export default Produto;

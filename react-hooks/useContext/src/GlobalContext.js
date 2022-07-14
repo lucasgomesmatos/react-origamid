@@ -1,23 +1,18 @@
 import React, { createContext, useEffect, useState } from "react";
 
-export const GlobalStore = createContext();
+export const GlobalStorage = createContext();
 
 export const GlobalContext = ({ children }) => {
-  const [produto, setProduto] = useState(null);
+  const [mega, setMega] = useState();
+
+  
 
   useEffect(() => {
-    fetch("https://ranekapi.origamid.dev/json/api/produto/")
-      .then((res) => res.json())
-      .then((json) => setProduto(json));
-  }, []);
+    fetch("https://viacep.com.br/ws/01001000/json/")
+    .then(res => res.json())
+    .then(json => setMega(json))
+    
+  }, [])
 
-  function limpaDados() {
-    setProduto(null);
-  }
-
-  return (
-    <GlobalStore.Provider value={{ produto, setProduto,limpaDados }}>
-      {children}
-    </GlobalStore.Provider>
-  );
+  return <GlobalStorage.Provider value={{ mega, setMega }}>{children}</GlobalStorage.Provider>;
 };
