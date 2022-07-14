@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import { GlobalStorage } from "./GlobalContext";
 
-export const Produto = () => {
-  const dados = useContext(GlobalStorage);
-  if (dados.mega === null) return null;
+import "./style.css";
 
-  return <div>
-    {
-    dados.mega && 
+export const Produto = () => {
+  const {dados} = useContext(GlobalStorage);
+  if (dados === null) return null;
+  return (
     <div>
-      <p>{dados.mega.localidade}</p>
-      <p>{dados.mega.cep }</p>
+      <h1>Produto:</h1>
+      {dados && dados.map((produto) => (
+        <li key={produto.id}>{produto.nome} </li>
+      ))}
     </div>
-    
-    }</div>;
+  );
 };
