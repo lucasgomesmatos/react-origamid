@@ -1,87 +1,92 @@
-import React, { useEffect, useState } from "react";
-import useFetch from "./useFetch/useFetch";
+import React, { useState } from "react";
+
+const formFields = [
+  {
+    id: "nome",
+    label: "Nome",
+    type: "text",
+  },
+  {
+    id: "email",
+    label: "E-mail",
+    type: "email",
+  },
+  {
+    id: "senha",
+    label: "Senha",
+    type: "password",
+  },
+  {
+    id: "cep",
+    label: "Cep",
+    type: "text",
+  },
+  {
+    id: "rua",
+    label: "Rua",
+    type: "text",
+  },
+  {
+    id: "numero",
+    label: "Numero",
+    type: "text",
+  },
+  {
+    id: "bairro",
+    label: "Bairro",
+    type: "text",
+  },
+  {
+    id: "cidade",
+    label: "Cidade",
+    type: "text",
+  },
+  {
+    id: "estado",
+    label: "Estado",
+    type: "text",
+  },
+];
+
 
 const App = () => {
-  
-  const [form, setForm] = useState({
-    nome: '',
-    email: '',
-    senha: '',
-    cep: '',
-    rua: '',
-    numero: '',
-    bairro: '',
-    cidade: '',
-    estado: '',
-  });
+  const [form, setForm] = useState(formFields.reduce((acc, field) => {
+    return  {
+      ...acc,
+      [field.id]: "",
+    }
+  }, {}));
 
-  const {request, dados, error, loading} = useFetch()
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    request("https://ranekapi.origamid.dev/json/api/usuario", form)
-  }
+  const [resultado, setResultado] = useState(null);
 
   function handleChange({ target }) {
     const { id, value } = target;
     setForm({ ...form, [id]: value });
   }
 
-  if(error) return <p>{error}</p>
-  if(loading) return <p>Carregando...</p>
+ async function handleSubmit(e) {
+    e.preventDefault();
+    const data = fetch("https://ranekapi.origamid.dev/json/api/usuario", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // form é o objeto com os dados do formulário
+      body: JSON.stringify(form),
+    });
+
+    setResultado(data);
+  }
+
   return (
     <form onSubmit={handleSubmit}>
-      {dados === false ? <p>Error</p> : ""}
-      {dados && <p>Usuário Cadastrado</p>}
-      <label htmlFor="nome">Nome:</label>
-      <input
-        type="text"
-        name="nome"
-        id="nome"
-        value={form.nome}
-        onChange={handleChange}
-      />
-
-      <label htmlFor="email">E-mail:</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        value={form.email}
-        onChange={handleChange}
-      />
-      <label htmlFor="senha">Senha:</label>
-      <input
-        type="password"
-        name="senha"
-        id="senha"
-        value={form.senha}
-        onChange={handleChange}
-      />
-      <label htmlFor="cep">Cep:</label>
-      <input
-        type="text"
-        name="cep"
-        id="cep"
-        value={form.cep}
-        onChange={handleChange}
-      />
-      <label htmlFor="rua">Rua:</label>
-      <input
-        type="text"
-        name="rua"
-        id="rua"
-        value={form.rua}
-        onChange={handleChange}
-      />
-      <label htmlFor="cidade">Cidade:</label>
-      <input
-        type="text"
-        name="cidade"
-        id="cidade"
-        value={form.cidade}
-        onChange={handleChange}
-      />
+      {formFields.map(({ id, label, type }) => (
+        <div key={id}>
+          <label htmlFor={id}>{label}</label>
+          <input type={type} id={id} value={form.id} onChange={handleChange} />
+        </div>
+      ))}
+      {resultado && resultado.ok && <p>Cadastrado com Sucesso</p>}
       <button>Enviar</button>
     </form>
   );
