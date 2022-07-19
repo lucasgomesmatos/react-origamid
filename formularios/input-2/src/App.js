@@ -8,7 +8,7 @@ const formFields = [
   },
   {
     id: "email",
-    label: "E-mail",
+    label: "Email",
     type: "email",
   },
   {
@@ -48,35 +48,32 @@ const formFields = [
   },
 ];
 
-
 const App = () => {
-  const [form, setForm] = useState(formFields.reduce((acc, field) => {
-    return  {
-      ...acc,
-      [field.id]: "",
-    }
-  }, {}));
+  const [form, setForm] = useState(
+    formFields.reduce((acc, field) => {
+      return { ...acc, [field.id]: "" };
+    }, {})
+  );
 
-  const [resultado, setResultado] = useState(null);
+  const [response, setResponse] = useState(null);
 
-  function handleChange({ target }) {
-    const { id, value } = target;
-    setForm({ ...form, [id]: value });
-  }
-
- async function handleSubmit(e) {
-    e.preventDefault();
-    const data = fetch("https://ranekapi.origamid.dev/json/api/usuario", {
+  function handleSubmit(event) {
+    event.preventDefault();
+    fetch("https://ranekapi.origamid.dev/json/api/usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       // form é o objeto com os dados do formulário
       body: JSON.stringify(form),
-    });
-
-    setResultado(data);
+    }).then(res => setResponse(res));
   }
+
+  function handleChange({ target }) {
+    const { id, value } = target;
+    setForm({ ...form, [id]: value });
+  }
+  console.log(form);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -86,8 +83,8 @@ const App = () => {
           <input type={type} id={id} value={form.id} onChange={handleChange} />
         </div>
       ))}
-      {resultado && resultado.ok && <p>Cadastrado com Sucesso</p>}
-      <button>Enviar</button>
+      {response && response.ok && <p>Cadastrado com Sucesso!</p>}
+      <button>Cadastrar</button>
     </form>
   );
 };
