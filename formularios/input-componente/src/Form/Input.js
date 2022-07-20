@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Form = ({ label, id, value, setValue }) => {
+const Input = ({ label, id, value, setValue }) => {
   return (
     <>
       <label htmlFor={id}>{label}</label>
@@ -14,4 +14,4 @@ const Form = ({ label, id, value, setValue }) => {
   );
 };
 
-export default Form;
+export default Input;
