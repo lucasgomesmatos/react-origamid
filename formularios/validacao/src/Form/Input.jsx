@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Input = ({ id, label, onChange, onBlur, ...pros }) => {
+const Input = ({ type, label, ...pros }) => {
   return (
-    <>
-      <label htmlFor={id}>{label}</label>
-      <input id={id} {...pros} onChange={onChange} onBlur={onBlur} />
-    </>
+    <form>
+      <label htmlFor={label}>{label.toUpperCase()}</label>
+      <input type={type} name={label} {...pros} />
+    </form>
   );
 };
 
