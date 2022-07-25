@@ -1,50 +1,26 @@
 import React, { useState } from 'react';
 import Input from './Form/Input';
-import styles from './styles/style.module.css';
+import useForm from './Hooks/useForm';
 
 const App = () => {
-  const [cep, setCep] = useState('');
-  const [error, setError] = useState('');
+  const cep = useForm('cep');
+  const email = useForm('email');
 
-  const regexCep = /^\d{5}-?\d{3}$/;
-
-  function validacaoCep(value) {
-    if (value.length === 0 || value.length > 8) {
-      setError('Prencha um valor');
-      return false;
-    } else if (!regexCep.test(value)) {
-      setError('Preencha um cep válido');
-      return false;
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (cep.validate() && email.validate()) {
+      console.log('Enviou');
     } else {
-      setError(null);
-      return true;
+      console.log('Não enviou');
     }
   }
 
-  function onChange({ target }) {
-    if (error) validacaoCep(target.value);
-    setCep(target.value);
-  }
-
-  function onBlur({ target }) {
-    validacaoCep(target.value);
-  }
-
-  console.log(cep);
-
   return (
-    <>
-      <Input
-        className={error ? `error` : ''}
-        label="cep"
-        type="text"
-        value={cep}
-        onChange={onChange}
-        onBlur={onBlur}
-        placeholder="00000-000"
-      />
-      {error}
-    </>
+    <form onSubmit={handleSubmit}>
+      <Input label="cep" type="text" {...cep} placeholder="00000-000" />
+      <Input label="email" type="email" {...email} />
+      <button style={{ marginTop: '1rem' }}>Enviar</button>
+    </form>
   );
 };
 
