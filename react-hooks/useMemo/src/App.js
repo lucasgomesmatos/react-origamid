@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 function operacaoLenta() {
   let c;
@@ -20,15 +20,19 @@ const App = () => {
   //   return localItem;
   // }, []);
 
-  const t1 = performance.now()
-  const valor = useMemo(() => {
-    return operacaoLenta()
+  // const t1 = performance.now();
+  // const valor = useMemo(() => {
+  //   return operacaoLenta();
+  // }, []);
+
+  // console.log(performance.now() - t1);
+  // console.log(valor);
+
+  const handleClick = useCallback(() => {
+    setContar((contar) => contar + 1)
   }, [])
 
-  console.log(performance.now() - t1);
-  console.log(valor);
-
-  return <button onClick={() => setContar(contar + 1)}>{contar}</button>;
+  return <button onClick={handleClick}>{contar}</button>;
 };
 
 export default App;

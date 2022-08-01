@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Input from './Form/Input';
-import useForm from './Hooks/useForm';
+import useForm from './useForm/useForm';
 
 const App = () => {
   const cep = useForm('cep');
@@ -14,7 +14,6 @@ const App = () => {
       console.log('Não enviou');
     }
   }
-
   return (
     <form onSubmit={handleSubmit}>
       <Input label="cep" type="text" {...cep} placeholder="00000-000" />
