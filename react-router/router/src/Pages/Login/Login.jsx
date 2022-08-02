@@ -6,7 +6,7 @@ const Login = () => {
 
   function handleClick() {
     console.log('fazer login');
-    navigate('/home');
+    navigate('/');
   }
 
   return (

@@ -4,6 +4,7 @@ import Home from './Pages/Home/Home';
 import Sobre from './Pages/Sobre/Sobre';
 import Pagina404 from './Pages/Error404/Pagina404';
 import Login from './Pages/Login/Login';
+import Produtos from './Pages/Produtos/Produtos';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="sobre" element={<Sobre />} />
         <Route path="login" element={<Login />} />
+        <Route path="/produtos/:id/*" element={<Produtos />} />
         <Route path="*" element={<Pagina404 />} />
       </Routes>
     </BrowserRouter>
