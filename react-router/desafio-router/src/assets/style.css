@@ -4,3 +4,16 @@
   margin: 0;
   font-family: 'Sora', sans-serif;
 }
+
+.animaLeft {
+  transform: translateX(-20px);
+  opacity: 0;
+  animation: animaLeft .3s forwards;
+}
+
+@keyframes animaLeft {
+  to {
+    transform: initial;
+    opacity: 1;
+  }
+}

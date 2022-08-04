@@ -8,4 +8,8 @@ export const Header = styled.nav`
     color: #fff;
     text-decoration: none;
   }
+
+  .active {
+    color: tomato;
+  }
 `;

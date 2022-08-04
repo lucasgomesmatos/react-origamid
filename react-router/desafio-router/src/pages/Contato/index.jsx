@@ -1,9 +1,12 @@
 import * as C from './style';
 import img from '../../assets/img/contato.jpg';
+import { Helmet } from 'react-helmet';
+import { Head } from '../../components/Head';
 
 export const Contato = () => {
   return (
-    <C.Container>
+    <C.Container className="animaLeft">
+      <Head title="Contato" description="página de contato" />
       <img src={img} alt="Contato" />
       <div>
         <h2>Entre em contato.</h2>

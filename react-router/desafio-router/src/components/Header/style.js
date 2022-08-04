@@ -3,13 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.nav`
   display: flex;
   gap: 20px;
-  margin: 0 20px;
-  padding: 20px;
+  margin: 20px 50px;
 
   a {
     text-decoration: none;
     display: inline-block;
-    background: #ddd;
+    background: #e9e9e9;
     color: #000;
     padding: 0.6rem 0.8rem;
     border-radius: 0.2rem;
@@ -18,5 +17,9 @@ export const Container = styled.nav`
   a:hover {
     opacity: 0.8;
     cursor: pointer;
+  }
+
+  .active {
+    background: #ddd;
   }
 `;

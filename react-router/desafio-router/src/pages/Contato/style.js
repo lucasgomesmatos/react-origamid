@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  margin: 20px;
+  margin: 20px 50px;
   gap: 20px;
 
   h2 {
@@ -31,5 +31,9 @@ export const Container = styled.div`
     display: block;
     max-width: 260px;
     border-radius: 6px;
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
   }
 `;
