@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 
 export const Area = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   margin: 2rem auto;
   max-width: 960px;
   color: #444;
