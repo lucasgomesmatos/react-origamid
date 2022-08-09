@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
+import Api from './api/api';
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Api />
+    </div>
+  );
 }
 
 export default App;
