@@ -1,12 +1,7 @@
-import { useState } from 'react';
-import Api from './api/api';
+import React from 'react';
 
-function App() {
-  return (
-    <div>
-      <Api />
-    </div>
-  );
-}
+const App = () => {
+  return <div>App</div>;
+};
 
 export default App;
